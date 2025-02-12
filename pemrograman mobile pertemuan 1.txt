@@ -1,0 +1,86 @@
+// Latihan 1 Hello World
+fun main() {
+    println("Hello World!!")
+}
+
+//latihan 2 fungsi main
+fun main(args: Array<String>){
+    println(args.contentToString())
+}
+
+//latihan 3 tipe data dan variabel
+fun main() {
+    val nama = "Kotlin"
+    println(nama)
+}
+
+fun main() {
+    val nama: String = "Kotlin"
+    println(nama)
+}
+
+fun main(){
+    var umur: Int = 25
+    println(umur)
+}
+
+//latihan 3 kondisi
+fun main(){
+    var umur: Int = 25
+    if (umur>= 18) {
+        println("Anda sudah dewasa")
+    } else {
+        println("Anda belum dewasa")
+    }
+}
+
+
+fun main() {
+    var umur: Int = 25
+    when (umur){
+    in 0..17 -> println("Anda masih anak anak")
+    else -> println("Anda sudah besar")
+    }
+}
+
+//latihan 4 loop
+fun main() {
+	for (i in 1..5) {
+    	println(i)
+	}
+}
+
+fun main() {
+    //loop while
+    var i = 1
+    while (i <= 5) {
+        println(i)
+        i++
+    }
+}
+
+fun main() {
+    // loop do-while
+    var i = 0
+    do {
+        println(i)
+        i++
+    } while (i <= 5)
+}
+
+//latihan 5 fungsi
+fun main() {
+    greeting("Kotlin")
+}
+fun greeting(name: String) {
+    println("Halo $name!")
+}
+
+//latihan 6 lambda
+fun main() {
+    val greet = {name: String -> greeting(name)}
+    greet("Kotlin")
+}
+fun greeting(name: String) {
+    println("Halo $name!")
+}
