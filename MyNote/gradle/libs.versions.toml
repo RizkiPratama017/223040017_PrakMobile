@@ -14,6 +14,10 @@ benasher44Uuid = "0.8.4"
 storage = "1.5.0"
 daggerHilt = "2.56.1"
 androidxHilt = "1.2.0"
+sandwich = "2.1.1"
+retrofit = "2.11.0"
+whatif = "1.2.1"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +45,11 @@ dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", vers
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "daggerHilt"}
 androidx-lifecycle-viewmodel-ktx = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx"}
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHilt"}
+skydoves-sandwich = { group = "com.github.skydoves", name = "sandwich", version.ref = "sandwich" }
+skydoves-sandwich-retrofit = { group = "com.github.skydoves", name = "sandwich-retrofit", version.ref = "sandwich" }
+skydoves-whatif = { group = "com.github.skydoves", name = "whatif", version.ref = "whatif" }
+retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+
 
 
 [plugins]
@@ -50,4 +59,5 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 room = {id = "androidx.room", version.ref = "room"}
 ksp = {id = "com.google.devtools.ksp", version.ref = "ksp"}
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt"}
+
 

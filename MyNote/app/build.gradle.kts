@@ -1,5 +1,3 @@
-import org.gradle.internal.declarativedsl.schemaBuilder.schemaFromTypes
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -77,5 +75,10 @@ dependencies {
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    implementation(libs.skydoves.sandwich)
+    implementation(libs.skydoves.sandwich.retrofit)
+    implementation(libs.skydoves.whatif)
+    implementation(libs.retrofit.converter.gson)
 
 }
