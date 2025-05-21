@@ -17,27 +17,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.LiveData
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.benasher44.uuid.uuid4
 import com.example.mynote.models.Note
-import kotlinx.coroutines.launch
+
 
 @Composable
 fun NoteScreen(modifier: Modifier) {
-    val context = LocalContext.current
-    val dao = NoteDatabase.getDatabase(context).noteDao()
-    val notes: List<Note> by dao
-        .getAllNotes()
-        .observeAsState(initial = emptyList())
+    val viewModel = hiltViewModel<NoteViewModel>()
+    val notes: List<Note> by viewModel.list.observeAsState(initial = listOf())
 
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
-    val scope = rememberCoroutineScope()
+    var editingId by remember { mutableStateOf<String?>(null) }
 
     Column(modifier = modifier.padding(16.dp)) {
         TextField(
@@ -56,44 +51,43 @@ fun NoteScreen(modifier: Modifier) {
         Spacer(modifier = Modifier.height(8.dp))
         Button(
             onClick = {
-                if (title.isNotBlank() && description.isNotBlank()) {
-                    scope.launch {
-                        dao.insertNote(
-                            Note(
-                                id = uuid4().toString(),
-                                title = title,
-                                description = description
-                            )
-                        )
-                        title = ""
-                        description = ""
-                    }
+                if (title.isBlank() || description.isBlank()) return@Button
+
+                if (editingId == null) {
+                    viewModel.insertNote(
+                        Note(id = uuid4().toString(), title = title, description = description)
+                    )
+                } else {
+                    // update existing
+                    viewModel.updateNote(
+                        Note(id = editingId!!, title = title, description = description)
+                    )
+                    editingId = null
                 }
+                title = ""
+                description = ""
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Save Note")
+            Text(if (editingId == null) "Save Note" else "Update Note")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
         LazyColumn {
-            items(notes) { noteItem ->
+            items(notes) { note ->
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 4.dp),
                     onClick = {
-                        scope.launch { dao.deleteNote(noteItem) }
+                        editingId = note.id
+                        title = note.title
+                        description = note.description
                     }
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
-                        Text(
-                            text = noteItem.title,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                        Text(
-                            text = noteItem.description,
-                            style = MaterialTheme.typography.bodyMedium
+                        Text(note.title, style = MaterialTheme.typography.titleMedium)
+                        Text(note.description, style = MaterialTheme.typography.bodyMedium
                         )
                     }
                 }

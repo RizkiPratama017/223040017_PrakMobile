@@ -12,6 +12,8 @@ room = "2.7.1"
 ksp = "2.1.20-2.0.0"
 benasher44Uuid = "0.8.4"
 storage = "1.5.0"
+daggerHilt = "2.56.1"
+androidxHilt = "1.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +37,10 @@ androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecy
 androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 benasher44-uuid = { group = "com.benasher44", name = "uuid", version.ref = "benasher44Uuid" }
 androidx-storage = { group = "androidx.test.services", name = "storage", version.ref = "storage" }
+dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt"}
+dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "daggerHilt"}
+androidx-lifecycle-viewmodel-ktx = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx"}
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHilt"}
 
 
 [plugins]
@@ -43,4 +49,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 room = {id = "androidx.room", version.ref = "room"}
 ksp = {id = "com.google.devtools.ksp", version.ref = "ksp"}
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt"}
 
